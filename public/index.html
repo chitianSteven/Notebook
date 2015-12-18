@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>Contact List App</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="stylesheets/slick.css" >
+<link rel="stylesheet" type="text/css" href="stylesheets/slick-theme.css" >
+<link rel="stylesheet" type="text/css" href="stylesheets/main.css" >
+</head>
+<body>
+<header>
+	<h3>ShenZhen 23° Rain</h3>
+	<nav>
+		<ul>
+			<li>Quick Note</li>
+			<li>Contact List</li>
+			<li>Customize</li>
+		</ul>
+	</nav>
+</header>
+<content ng-controller="todoCtrl">
+<div class="myNotebook">
+	<div class="leftPage">
+		<h1>My notebook</h1>
+		<div>
+			<div class="noteDetails">
+				Note Tilte: 
+				<input id="noteTitle" maxlength="40" type="text">
+				<textarea id="noteTodo" maxlength="100"></textarea>
+				<div>
+					<label>Classification: </label>
+					<select id="noteClass">
+						<option>Emergency</option>
+						<option selected="true">Normal</option>
+						<option>Not important</option>
+					</select>
+				</div>
+				<div>
+					<input id="noteAlarm" type="checkbox"><label style="margin-right: 15px; margin-left: 5px" checked="false">Alarm</label>
+					<select>
+						<option selected="true">0</option>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+					</select>
+					Days
+					<select>
+						<option selected="true">0</option>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+						<option>11</option>
+						<option>12</option>
+						<option>13</option>
+						<option>14</option>
+						<option>15</option>
+						<option>16</option>
+						<option>17</option>
+						<option>18</option>
+						<option>19</option>
+						<option>20</option>
+						<option>21</option>
+						<option>22</option>
+						<option>23</option>
+					</select>
+					Hours
+					<select>
+						<option selected="true">0</option>
+						<option>5</option>
+						<option>10</option>
+						<option>15</option>
+						<option>20</option>
+						<option>25</option>
+						<option>30</option>
+						<option>35</option>
+						<option>40</option>
+						<option>45</option>
+						<option>50</option>
+						<option>55</option>
+					</select>
+					Minites
+				</div>
+				<div style="margin-bottom: 6px">
+					<input id="noteComplete" type="checkbox" checked="false">
+					<label>Complete</label>
+				</div>
+				<div class="dtailsActions cssFlex">
+					<a href="" ng-click="update()">Update</a>
+					<a href="" ng-click="back()">Back</a>
+				</div>
+			</div>
+				<div class="calendarSection">
+					<div id="calendar-container">
+						<div id="calendar-header">
+							<span id="calendar-month-year"></span>
+						</div>
+						<hr class="horiHr">
+						<div id="calendar-dates"></div>
+					</div>
+					<div id="oneDate">
+						<div id="oneDateUpside">
+							<div id="oneDateHeader"></div>
+							<div id="oneDateMonth"></div>
+						</div>
+						<div id="oneDateDownside">
+							<div id="oneDateDay"></div>
+							<hr>
+							<div id="oneDateMark">
+								<table>
+									<tr>
+										<td id="red"></td>
+										<td id="blue"></td>
+										<td id="yellow"></td>
+										<td id="green"></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div id="musicPlayer"></div>
+				</div>
+			<div class="furtherFeathers">
+				<h1>Feathers</h1>
+				<div>
+					<img src="icons/iconMusic.png">
+					<img src="icons/iconDraw.png">
+					<img src="icons/iconFacebook.png">
+					<img src="icons/iconTwitter.png">
+					<img src="icons/iconGoogle.png">
+					<img src="icons/iconAdd.png">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="rightPage">
+		<h1>To do list</h1>
+		<div>
+		    <div class= "todoList">
+		        <a href="" ng-click="addTodo()">+Add a New Task</a>
+				<hr>
+		        <div class="noteTitle" ng-repeat="todo in todos | orderBy: 'complete': false" ng-init="todo.complete">
+					<input ng-model="todo.complete" type="checkbox" ng-checked="todo.complete">
+		        	<div class="noteInput">
+				        <label ng-click="editing = !editing" ng-class="{'completedTodo': todo.complete}" ng-hide="editing">{{todo.title}}</label>
+			            <input ng-blur="editing = false" ng-focus="true" ng-hide="!editing" type="text" ng-model="todo.title" maxlength="40">
+		            </div>
+		            <div class="noteActions">
+						<a href="" ng-click="edit(todo)">Edit</a>
+						<a href="" ng-click="saveTodo(todo)">Save</a>
+						<a href="" ng-click="deleteTodo(todo)">Delete</a>
+					</div>
+					<hr class="horiHr">
+		        </div>
+		        <div class="nextPage cssFlex">
+					<a href="" ng-click="prePage()">Pre</a>
+					<a style="float: right; margin-right: 10px; margin-left: 10px" href="" ng-click="nextPage()">Next</a>
+				</div>
+		    </div>
+		    <div class= "newsSection">
+		    	<h1>News Today</h1>
+		    	<div class="variable-width">
+				  <div><img src="images/img1-s.jpg"></div>
+				  <div><img src="images/img2-s.jpg"></div>
+				  <div><img src="images/img3-s.jpg"></div>
+				  <div><img src="images/img4-s.jpg"></div>
+				  <div><img src="images/img5-s.jpg"></div>
+				  <div><img src="images/img6-s.jpg"></div>
+				</div>
+		    </div>
+		</div>
+	</div>
+</div>
+</content>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
+<script src="javascripts/slick.min.js"></script>
+<script src="controllers/controller.js"></script>
+</body>
+</html>

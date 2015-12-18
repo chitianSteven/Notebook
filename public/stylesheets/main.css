@@ -1,0 +1,403 @@
+/*------Menu------*/
+/*------1. Basic------*/
+/*------2. Header------*/
+/*------  2.1 Basic------*/
+/*------  2.2 Icon------*/
+/*------  2.3 Hover------*/
+/*------3. Content------*/
+/*------	3.1 Primary Content------*/
+/*------		3.1.1 Left Page------*/
+/*------		    3.1.1.1 Basic------*/
+/*------		    3.1.1.2 Note Details------*/
+/*------		    3.1.1.3 Calendar------*/
+/*------		    3.1.1.4 Feathers------*/
+/*------		3.1.2 Right Page------*/
+/*------		    3.1.2.1 Basic------*/
+/*------		    3.1.2.2 Todo List------*/
+/*------		    3.1.2.3 News Seciton------*/
+/*------4. Footer------*/
+/*------5. media------*/
+
+
+
+/*------1. Basic------*/
+header,
+nav ul {
+	display: flex;
+}
+
+body {
+	background: url('http://img1.jurko.net/wall/paper/wallpaper_16136.jpg');
+  /*background:url('http://www.cssdeck.com/uploads/media/items/0/0Rs78ic.gif');*/
+}
+
+.horiHr {
+	border: 0;
+	height: 1px;
+	background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));       
+	background-image: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+	background-image: -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+	background-image: -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+}
+
+input {
+	border-radius: 5px;
+}
+
+/*------2. Header------*/
+/*------  2.1 Basic------*/
+header,
+header nav ul {
+	flex-wrap: wrap;
+}
+
+header {
+	align-content: space-between;
+	flex-wrap: wrap;
+	text-align: center;
+}
+
+h1 {
+	text-align: center;
+	margin: 10px 10px; 
+	background: #00d185;
+	color: #E9EDC0;
+	border-radius: 3px;
+	box-shadow: 0 10px 6px -6px #777;
+	flex-basis: 150px;
+}
+
+header h3 {
+	flex-grow: 1;
+	background-color: #00d185;
+	border-radius: 5px;
+	color: white;
+	box-shadow: 0 10px 6px -6px #777;
+}
+
+nav {
+	flex-grow: 2;
+	margin-top: auto;
+}
+
+nav ul {
+	padding: 0;
+	margin: 0px 0px 16px 0px;
+	}
+
+nav ul li {
+	margin: 10px 0px 0px 16px;
+	padding: 5px 10px;
+	list-style-type: none;
+	background-color: #00b5d1;
+	border-radius: 3px;
+	align-self:baseline;
+	font-size: 1.4em;
+	box-shadow: 0 10px 6px -6px #777;
+	transition: .5s;
+	flex-grow: 1;
+	flex-wrap: wrap;
+	position: relative;
+	overflow: hidden;
+	flex-basis: 5em;
+	color: white;
+}
+
+nav ul li a {
+	text-decoration:none;
+	color: white;
+}
+
+/*------  2.2 Icon------*/
+nav ul li:before {
+	content:url("../icons/iconArrow.png");
+	position: absolute;
+	left: -26%;
+}
+
+/*------  2.3 Hover------*/
+nav ul li:hover {
+	transform: scale(1.1);
+	box-shadow: 0 2px 12px -10px #777;
+	flex-grow: 1.2;
+}
+
+nav ul li:hover:before {
+	left: 6%;
+	transition: .5s;
+}
+
+/*------3. Content------*/
+.myNotebook {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+/*------	3.1 Primary Content------*/
+.rightPage,
+.leftPage {
+	width: 450px;
+	background-image: url("http://m.rgbimg.com/cache1szOpx/users/b/ba/ba1969/600/nyVD4Tu.jpg");
+	border-radius: 8px;
+	border-width: 1px;
+	border-style: solid;
+	overflow: hidden;
+	position: relative;
+}
+
+.cssFlex {
+	display: flex;
+}
+
+.cssFlex a{
+	margin-right: 20px;
+	margin-left: 20px;
+	text-decoration: none;
+	text-align: center;
+	background-color: #00b5d1;
+	border-radius: 3px;
+	align-self: baseline;
+	box-shadow: 0 10px 6px -6px #777;
+	transition: .5s;
+	flex-grow: 1;
+	flex-wrap: wrap;
+	flex-basis: 5em;
+	color: white;
+	height: 1.3em;
+}
+
+.cssFlex a:hover {
+	transform: scale(1.1);
+	box-shadow: 0 2px 12px -10px #777;
+	flex-grow: 2;
+}
+
+/*------		3.1.1 Left Page------*/
+/*------		    3.1.1.1 Basic------*/
+.leftPage {
+	margin-left: 10px;
+	padding-right: 10px;
+}
+
+.rightPage {
+	margin-right: 10px;
+	padding-left: 10px;
+}
+
+/*------		    3.1.1.2 Note Details------*/
+.leftPage .noteDetails {
+	height: 31em;
+	margin: 10px;
+	transition: 1s;
+	transform: translateX(-110%);
+	position: absolute;
+}
+
+.leftPage textarea {
+	resize: none;
+	height: 16.4em;
+	width: 100%;
+	border-radius: 5px;
+}
+
+/*------		    3.1.1.3 Calendar------*/
+.leftPage .calendarSection {
+	height: 21.9em;
+	margin: 10px;
+	transition: 1s;
+	display: flex;
+	border-style: solid;
+	border-color: red;
+	border-width: 1px;
+	flex-wrap: wrap;
+}
+
+#calendar-container {
+	margin: 10px;
+	padding: 10px;
+	text-align: center;
+	width: 198px;
+	height: 165px;
+	border-radius: 10px;
+	background-color: #99E8A8;
+	box-shadow: 0 10px 6px -6px #777;
+}
+
+#calendar-header {
+	margin-bottom: 10px;
+}
+
+#calendar-dates table td {
+	width: 10%;
+	text-align: center;
+	transition: .3s;
+	cursor: pointer;
+}
+
+#calendar-dates table td:hover {
+	transform: scale(1.4);
+}
+
+#oneDate {
+	height: 182px;
+	width: 160px;
+	margin: 10px;
+	border-style: solid;
+	border-color: red;
+	border-width: 1px;
+}
+
+#oneDateUpside {
+	background-color: red;
+}
+
+#oneDateDownside {
+	background-color: #F6F7E4;
+}
+
+#oneDateHeader {
+	height: .5em;
+}
+
+#oneDateMonth {
+	height: 1em;
+}
+
+#oneDateDay {
+	height: 5.5em;
+}
+
+#oneDateMark {
+
+}
+
+/*------		    3.1.1.4 Music Player------*/
+#musicPlayer {
+	height: 7.7em;
+	width: 100%;
+	margin: 0px 10px;
+	border-style: solid;
+	border-color: red;
+	border-width: 1px;
+	display: inline-block;
+}
+
+
+/*------		    3.1.1.4 Feathers------*/
+.furtherFeathers {
+	margin: 0 20px 20px 20px;
+}
+
+.furtherFeathers img {
+	background-color: #00b5d1;
+	border-radius: 5px;
+	padding: 5px;
+	margin: 10px;
+	box-shadow: 0 10px 6px -6px #777;
+	transition: .5s;
+}
+
+.furtherFeathers img:hover {
+	transform: scale(1.2);
+	box-shadow: 0 2px 12px -10px #777;
+	flex-grow: 2;
+}
+
+/*------		3.1.2 Right Page------*/
+/*------		    3.1.2.1 Basic------*/
+/*------		    3.1.2.2 Todo List------*/
+.todoList {
+	height: 22em;
+	transition: 1s;
+}
+
+.nextPage {
+	transform: translateY(50px);
+	margin-right: 15px;
+}
+
+.noteTitle {
+	height: 3em;
+}
+
+.noteTitle .horiHr {
+	transform: translateY(-20px);
+}
+
+.completedTodo {
+	color: #a7b9c4;
+	text-decoration:line-through;
+}
+
+.noteTitle .noteInput {
+	margin-left: 35px;
+	font-size: 1.3em;
+	transform: translateY(-10px);
+}
+
+.noteTitle .noteActions {
+	transform: translateX(380px) translateY(-15px);
+	width: 300px;
+	transition: 1s;
+	opacity: 0;
+	display: flex;
+}
+
+.noteTitle:hover .noteActions {
+	transform: translateX(150px) translateY(-15px);
+	opacity: 0.8;
+}
+
+.noteTitle:hover .noteInput {
+	transform: translateY(-15px) translateX(-25px) scale(.8);
+	transition: .5s;
+}
+
+.noteTitle .noteActions a{
+	margin-right: 10px;
+	text-decoration: none;
+	text-align: center;
+	background-color: #00b5d1;
+	border-radius: 3px;
+	align-self: baseline;
+	box-shadow: 0 10px 6px -6px #777;
+	transition: .5s;
+	flex-grow: 1;
+	flex-wrap: wrap;
+	flex-basis: 5em;
+	color: white;
+}
+
+.noteTitle .noteActions a:hover {
+	transform: scale(1.1);
+	box-shadow: 0 2px 12px -10px #777;
+	flex-grow: 4;
+}
+
+.noteTitle input[type="checkbox"]{
+  width: 20px; /*Desired width*/
+  height: 20px; /*Desired height*/
+  cursor: pointer;
+  transform: translateY(15px);
+}
+
+
+/*------		    3.1.2.3 News Seciton------*/
+.newsSection {
+	height: 14em;
+	width: 98%;
+}
+
+/*------4. Footer------*/
+/*------5. media------*/
+@media screen and (max-width: 965px) {
+	#oneDate {
+  		display: none;
+	}
+}
+
+/*@media screen and (max-width: 2000px) {
+	#col-first {
+  	flex-direction: column;
+	}
+}*/
