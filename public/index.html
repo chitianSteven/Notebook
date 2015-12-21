@@ -111,21 +111,23 @@
 					</div>
 					<div id="oneDate">
 						<div id="oneDateUpside">
-							<div id="oneDateHeader"></div>
-							<div id="oneDateMonth"></div>
+							<div id="oneDateHeader">
+								<img src="icons/iconPins.png">
+							</div>
+							<div id="oneDateMonth">
+								<label id="Month">December</label>
+							</div>
 						</div>
 						<div id="oneDateDownside">
-							<div id="oneDateDay"></div>
-							<hr>
+							<div id="oneDateDay">
+								<label id="Day">18</label>
+							</div>
+							<hr class="horiHr">
 							<div id="oneDateMark">
-								<table>
-									<tr>
-										<td id="red"></td>
-										<td id="blue"></td>
-										<td id="yellow"></td>
-										<td id="green"></td>
-									</tr>
-								</table>
+								<a id="red" ng-click="changeDateColor()">&nbsp;</a>
+								<a id="blue" ng-click="changeDateColor()">&nbsp;</a>
+								<a id="yellow" ng-click="changeDateColor()">&nbsp;</a>
+								<a id="green" ng-click="changeDateColor()">&nbsp;</a>
 							</div>
 						</div>
 					</div>

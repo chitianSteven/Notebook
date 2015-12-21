@@ -186,7 +186,7 @@ nav ul li:hover:before {
 
 /*------		    3.1.1.2 Note Details------*/
 .leftPage .noteDetails {
-	height: 31em;
+	height: 30.8em;
 	margin: 10px;
 	transition: 1s;
 	transform: translateX(-110%);
@@ -202,7 +202,7 @@ nav ul li:hover:before {
 
 /*------		    3.1.1.3 Calendar------*/
 .leftPage .calendarSection {
-	height: 21.9em;
+	height: 21.8em;
 	margin: 10px;
 	transition: 1s;
 	display: flex;
@@ -217,7 +217,7 @@ nav ul li:hover:before {
 	padding: 10px;
 	text-align: center;
 	width: 198px;
-	height: 165px;
+	height: 170px;
 	border-radius: 10px;
 	background-color: #99E8A8;
 	box-shadow: 0 10px 6px -6px #777;
@@ -242,6 +242,10 @@ nav ul li:hover:before {
 	height: 182px;
 	width: 160px;
 	margin: 10px;
+	border-radius: 10px;
+	overflow: hidden;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	box-shadow: 0 10px 6px -6px #777;
 	border-style: solid;
 	border-color: red;
 	border-width: 1px;
@@ -253,27 +257,68 @@ nav ul li:hover:before {
 
 #oneDateDownside {
 	background-color: #F6F7E4;
+	height: 138px;
 }
 
 #oneDateHeader {
 	height: .5em;
+	text-align: center;
+}
+
+#oneDateHeader img {
+	transform: rotateZ(30deg) translateX(5px);
 }
 
 #oneDateMonth {
-	height: 1em;
+	height: 2em;
+	text-align: center;
+	margin-top: 5px;
 }
 
 #oneDateDay {
-	height: 5.5em;
+	height: 5.7em;
+	text-align: center;
+}
+
+#oneDateDay label {
+	font-size: 3.5em;
 }
 
 #oneDateMark {
-
+	display: flex;
 }
 
+#oneDateMark a {
+	height: 50%;
+	flex-grow: 1;
+	margin: 0px 5px;
+	transition: .5s;
+	cursor: pointer;
+}
+
+#oneDateMark a:hover {
+	flex-grow: 2;
+	transform: scale(1.2);
+}
+
+#oneDateMark #red {
+	background-color: red;
+}
+
+#oneDateMark #blue {
+	background-color: #00b5d1;
+}
+
+#oneDateMark #yellow {
+	background-color: #EBF056;
+}
+
+#oneDateMark #green {
+	background-color: #99E8A8;
+}
 /*------		    3.1.1.4 Music Player------*/
 #musicPlayer {
-	height: 7.7em;
+	height: 7.5em;
 	width: 100%;
 	margin: 0px 10px;
 	border-style: solid;

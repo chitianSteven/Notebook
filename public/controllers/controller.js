@@ -8,7 +8,7 @@ myApp.controller('todoCtrl', ['$scope', '$http', function($scope, $http) {
 	//Find the notes according to the current page index
 	var findPage = function() {
 		$scope.todos = $scope.allTodos.slice(curPage*notePerPage, (curPage+1)*notePerPage);
-	}
+	};
 
 	//Find the notes list for pre page
 	$scope.prePage = function() {
@@ -17,7 +17,7 @@ myApp.controller('todoCtrl', ['$scope', '$http', function($scope, $http) {
 			curPage = 0;
 		}
 		findPage();
-	}
+	};
 
 	//Find the notes list for next page
 	$scope.nextPage = function() {
@@ -26,13 +26,74 @@ myApp.controller('todoCtrl', ['$scope', '$http', function($scope, $http) {
 			curPage = Math.floor($scope.todos.length/notePerPage+1);
 		}
 		findPage();
+	};
+
+	//set the Date variables
+	var d = new Date();
+	var month_name = ['January','February', 'March', 'April', 'May', 'June', 'July', 'Augst', 'September', 'Octorber', 'Novmenber', 'December'];
+	var month = month_name[d.getMonth()];
+	var year = d.getFullYear();
+	var first_date = month+" "+1+" "+year;
+	var tmp = new Date(first_date).toDateString();
+	var first_day = tmp.substring(0, 3);
+	var day_name = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+	var day_no = day_name.indexOf(first_day);
+	var days = new Date(year, d.getMonth()+1, 0).getDate();
+
+	var getCalenderDays = function(date) {
+		var first_date = date.month+" "+1+" "+date.year;
+		var tmp = new Date(first_date).toDateString();
+		var first_day = tmp.substring(0, 3);
+		var day_no = day_name.indexOf(first_day);
+		var days = new Date(year, d.getMonth()+1, 0).getDate();
+
+		return {day_no: day_no, days: days};
+	}
+
+	var refreshCalendar = function() {
+
+		if ($scope.month==undefined && $scope.day==undefined && $scope.year==undefined) {
+			//set the Date variables
+			var d = new Date();
+			var month_name = ['January','February', 'March', 'April', 'May', 'June', 'July', 'Augst', 'September', 'Octorber', 'Novmenber', 'December'];
+			var month = month_name[d.getMonth()];
+
+			var year = d.getFullYear();
+			var day_name = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+			var getDays = getCalenderDays({month: month, year: year});
+			var day_no = getDays.day_no;
+			var days = getDays.days;
+
+			$scope.month = month;
+			$scope.day = d.getDate();
+			$scope.year = year;
+		} else {
+			var getDays = getCalenderDays({month: $scope.month, year: $scope.year});
+			var day_no = getDays.day_no;
+			var days = getDays.days;
+		}
+
+		var calendar = get_calendar(day_no,days);
+		document.getElementById('calendar-month-year').innerHTML = month+" "+year;
+		var thisNode = document.getElementById('calendar-dates');
+		while (thisNode.firstChild) {
+			thisNode.removeChild(thisNode.firstChild);
+		}
+		document.getElementById('calendar-dates').appendChild(calendar);
 	}
 
 	//Refresh the note list by researching the database
 	var refresh = function(){
-		$http.get('/tododay').success(function(response) {
+		$http.post('/tododay', {year: year, month: month}).success(function(response) {
 			$scope.allTodos = response;
 			findPage();
+		});
+
+		$http.post('/tododate',{year: year, month: month}).success(function(response) {
+			$scope.tododate = response;
+			console.log(response);
+			refreshCalendar();
 		});
 	};
 
@@ -40,7 +101,7 @@ myApp.controller('todoCtrl', ['$scope', '$http', function($scope, $http) {
 
 	//Add a new todo to the database
 	$scope.addTodo = function() {
-		var todo = {'title': 'toto title', 'class': "normal", 'todo': 'This is a new todo', 'complete': false, 'alarm': false};
+		var todo = {'date': d.getDate(), 'month': month, 'year': year , 'title': 'todo title', 'class': "normal", 'todo': 'This is a new todo', 'complete': false, 'alarm': false};
 		$http.post('/tododay', todo).success(function(response) {
 			refresh();
 		});
@@ -55,7 +116,7 @@ myApp.controller('todoCtrl', ['$scope', '$http', function($scope, $http) {
 
 	//Update the todo data in the database
 	$scope.saveTodo = function(todo) {
-		console.log(todo);
+		// console.log(todo);
 		$http.put('/tododay/'+todo._id, todo).success(function(response) {
 			refresh()	
 		});
@@ -145,19 +206,6 @@ myApp.controller('todoCtrl', ['$scope', '$http', function($scope, $http) {
 
 
 	//Build the calendar
-	var d = new Date();
-	var month_name = ['January','February', 'March', 'April', 'May', 'June', 'July', 'Augst', 'September', 'Octorber', 'Novmenber', 'December'];
-	var month = month_name[d.getMonth()];
-	var year = d.getFullYear();
-	var first_date = month+" "+1+" "+year;
-	var tmp = new Date(first_date).toDateString();
-	var first_day = tmp.substring(0, 3);
-	var day_name = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-	var day_no = day_name.indexOf(first_day);
-	var days = new Date(year, d.getMonth()+1, 0).getDate();
-
-
-
 	function get_calendar(day_no, days) {
 		var table = document.createElement('table');
 		var tr = document.createElement('tr');
@@ -208,12 +256,63 @@ myApp.controller('todoCtrl', ['$scope', '$http', function($scope, $http) {
 		}
 		return table;
 	}
-
-	var calendar = get_calendar(day_no,days);
-	document.getElementById('calendar-month-year').innerHTML = month+" "+year;
-	document.getElementById('calendar-dates').appendChild(calendar);
 }]);
 
+// document.querySelectorAll("#calendar-dates td")
+$("#calendar-dates").on("click", function(e) {
+	var dateNo = e.target.outerText;
+	if (parseInt(dateNo)) {
+		$("#Day").text(dateNo);
+	}
+	// console.log(e.target.outerText);
+});
+
+//Change the date color
+$("#oneDateMark").on("click", function(e) {
+	// console.log(e.target.id);
+	var color = e.target.id;
+	switch(color) {
+		case "blue":
+			color = "#00b5d1";
+			break;
+		case "yellow":
+			color = "#EBF056";
+			break;
+		case "green": 
+			color = "#99E8A8";
+			break;
+	}
+	var styles1 = {
+		"border-color": color
+	};
+	var styles2 = {
+		"background-color": color
+	}
+	var styles3 = {
+		"border-color": color,
+		"border-width": "1px",
+		"border-radius": "50%",
+		"border-style": "solid"
+	}
+	$("#oneDate").css(styles1);
+	$("#oneDateUpside").css(styles2);
+	// console.log($("#Day").text());
+	// console.log($("#calendar-dates").find("td").find(":contains("+$("#Day").text()+")"));
+	var matchText = $("#Day").text();
+	$("#calendar-dates").find("td").filter(function() {
+		if ($(this).text()==matchText) {
+			$(this).css(styles3);
+		}
+	});
+
+	$http.put('/tododay/'+{month: $scope.month, year: $scope.year}).success(function(response) {
+		refreshCalendar();
+	});
+
+	$http.put('/tododate/'+{month: $scope.month, year: $scope.year}).success(function(response) {
+		refreshCalendar();
+	});
+});
 
 //Set the news sliders
 $('.variable-width').slick({
