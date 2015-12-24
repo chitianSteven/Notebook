@@ -1,12 +1,12 @@
 //Set mongo db
 var mongoose = require('mongoose'); 
 
-var noteSchema = mongoose.Schema({
+var NoteSchema = new mongoose.Schema({
     title: String,
-    priority: String,
+    priorty: String,
     content: String,
     complete: Boolean,
-    updated_at: {type:Date, default: Date.now},
+    date: {type:Date, default: Date.now},
 });
 
-var notelist = mongoose.model('notelist', notelistSchema);
+module.exports = mongoose.model('Note', NoteSchema);

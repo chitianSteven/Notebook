@@ -221,6 +221,7 @@ nav ul li:hover:before {
 	border-radius: 10px;
 	background-color: #99E8A8;
 	box-shadow: 0 10px 6px -6px #777;
+	overflow: hidden;
 }
 
 #calendar-header {
@@ -230,8 +231,14 @@ nav ul li:hover:before {
 #calendar-dates table td {
 	width: 10%;
 	text-align: center;
-	transition: .3s;
-	cursor: pointer;
+	transition: .5s;
+	cursor: pointer;		
+	border-color: #99E8A8;
+	border-width: 1px;
+	border-radius: 50%;
+	border-style: solid;
+	background-color: #99E8A8;
+	overflow: hidden;
 }
 
 #calendar-dates table td:hover {

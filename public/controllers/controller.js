@@ -292,7 +292,8 @@ $("#oneDateMark").on("click", function(e) {
 		"border-color": color,
 		"border-width": "1px",
 		"border-radius": "50%",
-		"border-style": "solid"
+		"border-style": "solid",
+		"background-color": color,
 	}
 	$("#oneDate").css(styles1);
 	$("#oneDateUpside").css(styles2);
