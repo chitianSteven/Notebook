@@ -7,10 +7,6 @@
   <body>
     <h1>{{ title }}</h1>
     <p>Welcome to {{ title }}</p>
-    <ul>
-	    <li><a href="/userlist">Check user information</a></li>
-	    <li><a href="/newuser">Add new user</a></li>
-    </ul>
   </body>
 </html>
 
